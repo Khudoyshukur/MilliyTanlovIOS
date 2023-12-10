@@ -6,14 +6,26 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
+    
+    @IBOutlet weak var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        webView.navigationDelegate = self
+
+        // Load the desired URL
+        if let url = URL(string: "https://milliytanlov.uz/") {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
 
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
 }
 
